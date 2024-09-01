@@ -1,7 +1,6 @@
 import { MongoClient } from "mongodb";
 
 const connectionString = process.env.MONGO_ENDPOINT || "";
-console.log(connectionString)
 const client = new MongoClient(connectionString);
 
 let conn;
@@ -12,6 +11,7 @@ try {
   console.error(e);
 }
 
+// Create a database named 'tts' or replace with your own.
 let db = conn.db("tts");
 
 export default db;
