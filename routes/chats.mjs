@@ -8,8 +8,14 @@ router.get("/", async (req, res) => {
 });
 
 router.put("/new", async (req, res) => {
+    let body = req.body
     let collection = await db.collection("chats");
-    const doc = { user: value.steam_name, steam_id: value._steam_id, message: value.message };
+    const doc = {
+        user: body.steam_name,
+        steam_id: body.steam_id,
+        message: body.message,
+        timestamp: new Date()
+    };
     await collection.insertOne(doc)
     res.json().status(200);
 });
