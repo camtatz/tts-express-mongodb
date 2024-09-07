@@ -8,10 +8,9 @@ router.get("/", async (req, res) => {
 });
 
 router.put("/dump", async (req, res) => {
-    console.log('Dumping to DB')
     let collection = await db.collection("users");
     for (const [key, value] of Object.entries(req.body)) {
-        await collection.replaceOne({ _id: key }, {_id: key, blob: JSON.stringify(value)}, {upsert: true})
+        await collection.replaceOne({ _id: key }, {_id: key, blob: value, lastUpdate: new Date()}, {upsert: true})
     }
     res.json().status(200);
 });
